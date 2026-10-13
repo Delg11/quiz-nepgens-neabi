@@ -5,7 +5,7 @@ function StartScreen({ onStart }) {
         <div className="h-2 bg-green-600" />
         <div className="flex flex-col items-center gap-7 px-6 py-10 text-center md:px-12 md:py-12">
           <img
-            src="/ifes-logo.png"
+            src={`${import.meta.env.BASE_URL}ifes-logo.png`}
             alt="Logo IFES"
             className="h-20 w-auto md:h-24"
           />
