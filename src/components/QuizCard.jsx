@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 function QuizCard({
   question,
   questionIndex,
@@ -8,6 +10,14 @@ function QuizCard({
   onNext,
   isLastQuestion,
 }) {
+  const nextButtonRef = useRef(null)
+
+  useEffect(() => {
+    if (isAnswered) {
+      nextButtonRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [isAnswered])
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-8">
       <div className="w-full max-w-4xl rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_25px_80px_rgba(15,23,42,0.08)] md:p-8">
@@ -74,6 +84,7 @@ function QuizCard({
         {isAnswered ? (
           <div className="mt-8 flex justify-end">
             <button
+              ref={nextButtonRef}
               type="button"
               onClick={onNext}
               className="inline-flex items-center justify-center rounded-full bg-red-600 px-6 py-3 text-base font-bold text-white shadow-lg shadow-red-600/20 transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200"
